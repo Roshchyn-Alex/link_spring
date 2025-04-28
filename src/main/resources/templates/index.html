@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Главная страница</title>
+    <link rel="stylesheet" th:href="@{/main.css}">
+</head>
+<body>
+    <header class="container">
+        <div class="header-left">
+            <div class="logo">Сокращение ссылок</div>
+            <nav>
+                <a href="/">Главная</a>
+                <a href="/">Про нас</a>
+            </nav>
+        </div>
+        <div class="search">
+            <input type="search" placeholder="Поиск" class="search-input">
+            <button class="search-btn">Поиск</button>
+        </div>
+    </header>
+    <main class="container">
+        <div class="links-block">
+            <div class="links">
+                <h3>Все ссылки</h3>
+                    <ul class="links-list">
+                        <li th:each="el : ${links}">Ссылка: <a th:href="${el.fullLink}" th:text="'/' + ${el.shortLink}" target="_blank"></a></li>
+                    </ul>
+            </div>
+            <form method="post" class="add-link">
+                <h3>Добавление ссылки</h3>
+                <input type="url" name="fullLink" th:value="${fullLink}" placeholder="Длинная ссылка" class="input-link"><br>
+                <input type="text" name="shortLink" th:value="${shortLink}" placeholder="Сокращенная ссылка" class="input-link"><br>
+                <div th:if="${message}" class="message" th:text="${message}"></div>
+                <button type="submit" class="add-btn">Добавить</button>
+            </form>
+        </div>
+    </main>
+    <footer>
+        <section class="footer-section">
+            <div class="footer-block">
+                <div>
+                    <h3>&#174 2024-2025</h3>
+                </div>
+                <div>
+                    <h3>Features</h3>
+                    <ul class="no-bullets">
+                        <li>Cool stuff</li>
+                        <li>Random feature</li>
+                        <li>Team feature</li>
+                        <li>Last time</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3>Resources</h3>
+                    <ul class="no-bullets">
+                        <li>Resource</li>
+                        <li>Resource name</li>
+                        <li>Another resource</li>
+                        <li>Final resource</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3>About</h3>
+                    <ul class="no-bullets">
+                        <li>Team</li>
+                        <li>Locations</li>
+                        <li>Privacy</li>
+                        <li>Terms</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </footer>
+</body>
+</html>
